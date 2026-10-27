@@ -1,0 +1,2 @@
+# Project prompt (summary)
+Build LeakGuard, a static, client-side, FLA-based secret scanner: HTML/CSS/vanilla ES modules; a genuine character-level DFA lexer (`js/dfa-engine.js`); contextual rules (`js/scanner.js`); masked JSON/CSV reports; DFA visualizer; Node built-in tests; fictional demo files; README, FLA-MAPPING and PROJECT_REPORT; no backend, no storage of code, no execution of input. This file is a summary, not the verbatim original prompt.

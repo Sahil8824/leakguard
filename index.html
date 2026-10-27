@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeakGuard — FLA-Based Local Secret Detection Scanner</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header><h1>LeakGuard</h1><p>FLA-based local secret detection scanner</p></header>
+<main>
+<section class="card privacy" aria-label="Privacy notice"><strong>Local only.</strong> All scanning runs in your browser. Code is never uploaded, stored, or executed. Findings are potential exposures, not proof of live credentials.</section>
+<p id="status" role="status" aria-live="polite" data-kind="info">No scan yet.</p>
+
+<section aria-labelledby="h-dash"><h2 id="h-dash">Dashboard</h2>
+<div class="stats">
+<div class="card"><span id="statFiles">0</span>Files scanned</div>
+<div class="card"><span id="statFindings">0</span>Potential findings</div>
+<div class="card"><span id="statHigh">0</span>High severity</div>
+<div class="card"><span id="statWith">0</span>Files with findings</div>
+<div class="card"><span id="statLast">Not run</span>Last scan</div>
+</div></section>
+
+<section class="card" aria-labelledby="h-in"><h2 id="h-in">Source input</h2>
+<label for="fileName">File name (its extension selects the parsing mode)</label>
+<input id="fileName" type="text" value="pasted-code.java">
+<label for="editor">Paste code</label>
+<textarea id="editor" rows="10" spellcheck="false" placeholder="Paste source or config text here…"></textarea>
+<div class="row">
+<label class="btn" for="fileInput">Choose files</label><input id="fileInput" type="file" multiple class="sr">
+<label class="btn" for="dirInput">Choose folder</label><input id="dirInput" type="file" webkitdirectory class="sr">
+</div>
+<ul id="fileList" aria-label="Selected files"></ul>
+<p class="hint" id="limits"></p>
+<ul id="skipped" hidden></ul>
+<div class="row">
+<button id="btnScan" class="primary" type="button">Scan Code</button>
+<button id="btnScanFiles" type="button">Scan Selected Files</button>
+<button id="btnDemo" type="button">Load Demo</button>
+<button id="btnClear" type="button">Clear</button>
+<button id="btnJson" type="button">Export Report (JSON)</button>
+<button id="btnCsv" type="button">Export Report (CSV)</button>
+</div></section>
+
+<section class="card" aria-labelledby="h-find"><h2 id="h-find">Findings</h2>
+<div class="row">
+<label for="fSeverity">Severity</label><select id="fSeverity"><option value="">All</option><option>High</option><option>Medium</option></select>
+<label for="fRule">Type</label><select id="fRule"><option value="">All</option></select>
+</div>
+<div class="scroll"><table><thead><tr><th>Severity</th><th>Rule</th><th>Type</th><th>File</th><th>Line:Col</th><th>Reason</th><th>Remediation</th></tr></thead><tbody id="findings"></tbody></table></div>
+<div id="detail" class="detail" aria-live="polite"><p class="hint">Select a rule ID in the table to see details.</p></div>
+</section>
+
+<section class="card" aria-labelledby="h-dfa"><h2 id="h-dfa">DFA visualizer</h2>
+<p>The lexer is a DFA M = (Q, Σ, δ, q0, F). Enter one lexeme to run it through the <em>same</em> transition table the scanner uses. Σ is grouped into character classes.</p>
+<label for="dfaInput">Lexeme</label><input id="dfaInput" type="text" value="&quot;demo_secret_123456&quot;" autocomplete="off">
+<div class="row"><button id="btnDfa" class="primary" type="button">Run DFA</button><span id="dfaSamples" class="row"></span></div>
+<p id="dfaInfo"></p><p id="dfaResult" class="hint"></p>
+<div class="scroll"><table id="dfaTrace"></table></div>
+<p id="dfaTokens" class="hint"></p>
+<h3>Transition function δ</h3><div class="scroll"><table id="dfaMatrix" class="matrix"></table></div>
+</section>
+</main>
+<footer>Supports a lexical subset only (no full parsing). Use fictional data when experimenting.</footer>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

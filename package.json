@@ -1,0 +1,2 @@
+{ "name": "leakguard", "version": "1.0.0", "description": "FLA-based local secret detection scanner", "type": "module", "license": "MIT",
+  "scripts": { "test": "node --test", "start": "python -m http.server 8080" } }
